@@ -5,7 +5,7 @@ import { useAuthStore } from '../store/authUser.js';
 const LoginPage = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const { login } = useAuthStore();
+  const { login, isLoggingIn } = useAuthStore();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -44,8 +44,9 @@ const LoginPage = () => {
           </div>
 
           <button type='submit' className='w-full py-2 bg-red-600 text-white font-semibold rounded-md
-          hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200 ease-in-out'>
-            Log in</button>
+          hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200 ease-in-out'
+          disabled={isLoggingIn}>
+            {isLoggingIn ? "Loading..." : "Login"}</button>
         </form>
         <div className='text-center text-gray-400 mt-4'>
           Don't have an account?
